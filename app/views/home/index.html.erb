@@ -1,0 +1,23 @@
+<h1>The Comics Test</h1>
+
+<h2>Random Stories from Iron Man</h2>
+
+<% if @story.blank? %>
+    <p>The API did not return a response</p>
+<% else %>
+    <h3>Story Description:</h3>
+    <p>@story.description</p>
+
+    <h3>Featured characters:</h3>
+    <p>Character</p>
+    <img src="" class="" alt="character">
+
+    <ul id = "characters">
+        <% @story.characters.each do |c| %>
+        <li><%= link_to c.title, {:action => 'show', :id => c.id} -%></li>
+        <% end %>
+    </ul>
+
+    <h4>Marvel attribution text:</h4>
+    <p>Data provided by Marvel. © 2014 Marvel</p>
+<% end %>
