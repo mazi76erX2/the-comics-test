@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # API Client
 gem 'httparty'
 
+# Debugger
+gem 'debug'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
