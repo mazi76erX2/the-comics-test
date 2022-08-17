@@ -79,7 +79,7 @@ class HomeController < ApplicationController
       "title" => @story_title,
       "description" => @story_description,
       "characters" => @story_characters,
-      "character_images" => @character_images,
+      "characterImages" => @character_images,
       "attributionText" => @attribution_text
     }
 
