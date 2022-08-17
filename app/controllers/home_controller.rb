@@ -83,6 +83,6 @@ class HomeController < ApplicationController
       "attributionText" => @attribution_text
     }
 
-    render json: @story
+    render @story
   end
 end
