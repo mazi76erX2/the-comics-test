@@ -19,13 +19,12 @@ class HomeController < ApplicationController
     @response = HTTParty.get(@url_character)
 
     case @response.code
-    when 200
-      puts "All good! 1"
     when 404
-      @message = "Character #{@@SUPERHERO} not found!"
-      puts @message
+      @message = {"error" => "Character #{@@SUPERHERO} not found!"}
+      render @message
     when 500...600
-      puts "ERROR #{@response.code}"
+      @message = {"error" => "ERROR #{@response.code}"}
+      render @message
     end
 
     @attribution_text = @response["attributionText"]
@@ -35,13 +34,12 @@ class HomeController < ApplicationController
     @response = HTTParty.get(@url_stories)
 
     case @response.code
-    when 200
-      puts "All good! 2"
     when 404
-      @message = "Stories not found for character #{@@SUPERHERO}!"
-      puts @message
+      @message = {"error" => "Stories not found for character #{@@SUPERHERO}!"}
+      render @message
     when 500...600
-      puts "ERROR #{@response.code}"
+      @message = {"error" => "ERROR #{@response.code}"}
+      render @message
     end
 
     @random_number = rand(0..@response["data"]["results"].length-1)
@@ -62,16 +60,15 @@ class HomeController < ApplicationController
       @response = HTTParty.get(@character_detail)
 
       case @response.code
-      when 200
-        puts "All good! 3"
       when 404
-        @message = "Character #{@character} not found!"
-        puts @message
+        @message = {"error" => "Character #{@character} not found!"}
+        render @message
       when 500...600
-        puts "ERROR #{@response.code}"
+        @message = {"error" => "ERROR #{@response.code}"}
+        render @message
       end
 
-      @character_images << @response["data"]["results"][0]["thumbnail"]["path"] + "." + @response["data"]["results"][0]["thumbnail"]["extension"]
+      @character_images << @response["data"]["results"][0]["thumbnail"]["path"] + "/portrait_xlarge." + @response["data"]["results"][0]["thumbnail"]["extension"]
       puts @character_images
     end
 

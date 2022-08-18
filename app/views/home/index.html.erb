@@ -3,29 +3,40 @@
 <h2>Random Stories from Iron Man</h2>
 
 <% if @story.blank? %>
-    <p>The API did not return a response</p>
+    <p>The Marvel API did not return a proper response</p>
+    <p><%= @message["error"] %></p>
 <% else %>
+    <h3>Story Title:</h3>
+    <p><%= @story["title"] %></p>
+
     <h3>Story Description:</h3>
-    <p><%= @story.description %></p>
+    <% if @story["description"] == "" %>
+        <p>Story has no description</p>
+    <% else %>
+        <%= @story["description"] %>
+    <% end %>
 
     <h3>Featured characters:</h3>
 
     <ul id = "characters">
-        <% @story.characters.each do |characters| %>
+        <% @story["characters"].each do |characters| %>
         <li>
             <h4><%= characters %></h4>
         </li>
         <% end %>
     </ul>
 
+    <h3>Featured character images:</h3>
     <ul id = "characters images">
-        <% @story.characterImages.each do |character_image| %>
+        <% @story["characterImages"].each do |character_image| %>
         <li>
             <img src=<%= character_image %> class="image" alt="character_image">
         </li>
         <% end %>
     </ul>
 
+    <p>Refresh page to see another random Iron story</p>
+
     <h4>Marvel attribution text:</h4>
-    <p><%= @story.attributionText %></p>
+    <p><%= @story["attributionText"] %></p>
 <% end %>
